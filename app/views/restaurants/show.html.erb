@@ -1,0 +1,15 @@
+<div class="container mt-5">
+<h2>
+  <%= restaurant.name %>
+</h2>
+<hr>
+<p>
+  <%= restaurant.address %>
+  <%= restaurant.phone_number %>
+  <%= restaurant.category %>
+</p>
+<%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %>
+<%= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Are your sure?" } %>
+<%= link_to "Back to all restaurants", restaurants_path %>
+</div>
+<%= link_to "+", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} class="card-remove-link"%>
