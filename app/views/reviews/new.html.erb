@@ -1,7 +1,7 @@
 <div class="container mt-5">
 <%= simple_form_for [@restaurant, @review] do |f| %>
 <%= f.input :content %>
-<%= f.input :rating, collection: Review::RATING %>
+<%= f.input :rating, :collection => 0..5, :as => :radio %>
 <%= f.submit "Submit Review" class="btn btn-primary"%>
 <% end %>
 </div>
