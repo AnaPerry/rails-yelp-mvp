@@ -21,13 +21,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_18_232502) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "Restaurant_id", null: false
     t.text "content"
     t.datetime "created_at", null: false
     t.integer "rating"
+    t.integer "restaurant_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["Restaurant_id"], name: "index_reviews_on_Restaurant_id"
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
   end
 
-  add_foreign_key "reviews", "Restaurants"
+  add_foreign_key "reviews", "restaurants"
 end

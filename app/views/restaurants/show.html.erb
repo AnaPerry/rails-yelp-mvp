@@ -1,24 +1,41 @@
 <div class="container mt-5">
-<h2>
-  <%= @restaurant.name %>
-</h2>
-<hr>
-<p>
-  <%= @restaurant.address %>
-  <%= @restaurant.phone_number %>
-  <%= @restaurant.category %>
-</p>
-<%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %>
-<%= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Are your sure?" } %>
-<%= link_to "Back to all restaurants", restaurants_path %>
+  <h2>
+    <%= @restaurant.name %>
+  </h2>
+  <hr>
+  <p>
+    <%= @restaurant.address %>
+  </p>
+  <p>
+    <%= @restaurant.phone_number %>
+  </p>
+  <p>
+    <%= @restaurant.category %>
+  </p>
+  <hr>
+  <h4>
+    <strong>Reviews</strong>
+    <%= link_to "+", new_restaurant_review_path(@restaurant), class:"btn btn-success"%>
+    </h4>
+  <ul class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item">
+        <%= review.content%>
+        <%= review.rating %>
+        <%= link_to review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+          <i class="fa-solid fa-trash"></i> Delete
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <hr>
+  <p>
+    <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant), class:"btn btn-success" %>
+  </p>
+  <p>
+    <%= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Are your sure?" }, class:"btn btn-danger" %>
+  </p>
+  <p>
+    <%= link_to "Back to all restaurants", restaurants_path, class:"btn btn-primary" %>
+  </p>
 </div>
-<p><strong>Reviews</strong></p>
-<ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li class="list-group-item">
-      <%= review.content%>
-      <%= review.rating %>
-      <%= link_to "+", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"card-remove-link"%>
-    </li>
-  <% end %>
-</ul>

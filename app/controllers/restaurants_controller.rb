@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
 
   def destroy
     @restaurant.destroy
-    redirect_to restaurant_path, status: :see_other
+    redirect_to restaurants_path, status: :see_other
   end
 
   def show
